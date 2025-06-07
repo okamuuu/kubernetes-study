@@ -1,5 +1,20 @@
-*.log
-*.env
-*.bak
-.kube/
+# Terraform state
+*.tfstate
+*.tfstate.backup
 .terraform/
+
+# Terraform variable overrides
+*.tfvars
+*.tfvars.json
+
+# AWS credentials or secrets (if any)
+*.pem
+*.key
+*.env
+
+# Kubernetes local config
+.kube/
+
+# Logs and backups
+*.log
+*.bak
