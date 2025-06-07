@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle-demo
+spec:
+  containers:
+    - name: lifecycle-demo-container
+      image: busybox
+      args:
+        - /bin/sh
+        - -c
+        - >
+          echo Container started;
+          sleep 3600
+      lifecycle:
+        postStart:
+          exec:
+            command:
+              [
+                "/bin/sh",
+                "-c",
+                "echo Hello from the postStart hook > /tmp/postStart.txt",
+              ]
+        preStop:
+          exec:
+            command:
+              [
+                "/bin/sh",
+                "-c",
+                "echo Goodbye from the preStop hook > /tmp/preStop.txt",
+              ]

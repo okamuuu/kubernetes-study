@@ -1,0 +1,17 @@
+# probe-demo.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probe-demo
+spec:
+  containers:
+    - name: web
+      image: nginx
+      ports:
+        - containerPort: 80
+      livenessProbe:
+        httpGet:
+          path: /healthz # ← 存在しないパスを指定（失敗する）
+          port: 80
+        initialDelaySeconds: 5
+        periodSeconds: 5
